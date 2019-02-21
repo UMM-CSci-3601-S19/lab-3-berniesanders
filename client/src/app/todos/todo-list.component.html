@@ -9,14 +9,14 @@
         <!--</mat-form-field>-->
 
         <mat-accordion *ngIf="todos; else todosError">
-          <mat-expansion-panel #elem [id]="todo._id" *ngFor="let todo of this.todos">
+          <mat-expansion-panel *ngFor="let todo of this.todos">
             <mat-expansion-panel-header>
-
-              <mat-panel-title matTooltip="owner: {{todo.owner}}">{{todo._id}}</mat-panel-title>
-
+              <mat-panel-title matTooltip="complete: {{todo.status}}">{{todo.body}}</mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-panel-description>Body: {{todo.body}}</mat-panel-description>
+            <mat-panel-description>Id: {{todo._id}}</mat-panel-description>
+            <mat-panel-description>Owner: {{todo.owner}}</mat-panel-description>
             <mat-panel-description>Category: {{todo.category}}</mat-panel-description>
+            <mat-panel-description>Complete: {{todo.status}}</mat-panel-description>
 
           </mat-expansion-panel>
         </mat-accordion>
