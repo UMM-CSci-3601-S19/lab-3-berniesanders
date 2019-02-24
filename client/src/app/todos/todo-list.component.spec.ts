@@ -80,4 +80,8 @@ describe('Todo List', () => {
   it('Contains two "Software Design" todos', () => {
     expect(todoList.todos.filter((todo: Todo) => todo.category === 'software design').length).toBe(2);
   });
+  it('Filter todos by owner "Bob" has correct length', () =>{
+    todoList.filteredTodos = todoList.todos;
+    expect(todoList.filterTodos("Bob", null, null, null).length).toBe(1);
+  });
 });

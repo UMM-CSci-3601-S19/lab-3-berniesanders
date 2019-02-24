@@ -11,10 +11,57 @@ import {Observable} from "rxjs/Observable";
 export class TodoListComponent implements OnInit {
   public todos: Todo[];
   public name: string = "Hello Worlds";
+  public filteredTodos: Todo[];
+
+  public todoOwner: string;
+  public todoStatus: boolean;
+  public todoBody: string;
+  public todoCategory: string;
 
   constructor(private todoListService: TodoListService) {
 
   }
+
+  public filterTodos(
+  searchOwner: string,
+  searchStatus: boolean,
+  searchBody: string,
+  searchCategory: string): Todo[] {
+
+  if (searchOwner != null){
+    searchOwner = searchOwner.toLocaleLowerCase();
+
+  this.filteredTodos = this.filteredTodos.filter(todo => {
+    return !searchOwner || todo.owner.toLocaleLowerCase().indexOf(searchOwner) !== -1;
+    });
+  }
+
+  if (searchStatus != null){
+    this.filteredTodos = this.filteredTodos.filter(todo =>{
+      return !searchStatus || (todo.status === Boolean(searchStatus));
+    });
+  }
+
+  if (searchBody != null){
+    searchBody = searchBody.toLocaleLowerCase();
+
+  this.filteredTodos = this.filteredTodos.filter(todo => {
+    return !searchBody || todo.body.toLocaleLowerCase().indexOf(searchBody) !== -1;
+    });
+  }
+
+ if (searchCategory != null){
+    searchCategory = searchCategory.toLocaleLowerCase();
+
+  this.filteredTodos = this.filteredTodos.filter(todo => {
+    return !searchCategory || todo.category.toLocaleLowerCase().indexOf(searchCategory) !== -1;
+    });
+ }
+
+ return this.filteredTodos;
+}
+
+
 
   refreshTodos(): Observable<Todo[]> {
     const returnedTodos = this.todoListService.getTodos();
