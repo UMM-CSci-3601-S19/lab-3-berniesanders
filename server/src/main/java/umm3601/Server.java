@@ -25,7 +25,7 @@ public class Server {
         ToDoController toDoController = new ToDoController();
 
         //Configure Spark
-        port(4567);
+        port(7654);
         enableDebugScreen();
 
         // Specify where assets like images will be "stored"
@@ -56,7 +56,7 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
-        redirect.get("/", "http://localhost:9000");
+        redirect.get("/", "http://localhost:9001");
 
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
