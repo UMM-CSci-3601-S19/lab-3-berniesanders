@@ -16,4 +16,9 @@ export class TodoListService {
   getTodos(): Observable<Todo[]> {
     return this.httpClient.get<Todo[]>(this.todoUrl);
   }
+
+  getTodosById(_id: string): Observable<Todo> {
+    return this.httpClient.get<Todo>(this.todoUrl + '/' + _id);
+  }
+
 }

@@ -4,6 +4,22 @@
       <mat-card-title id="todo-list-title">Todos</mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
+        <mat-form-field>
+          <input matInput id="todoOwner" #input placeholder="Filter by Owner" (input)="todoOwner = $event.target.value">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput id="todoBody" #input placeholder="Filter by Body" (input)="todoBody = $event.target.value">
+        </mat-form-field>
+         <mat-form-field>
+          <input matInput id="todoCategory" #input placeholder="Filter by Category" (input)="todoCategory = $event.target.value">
+        </mat-form-field>
+
+        <mat-radio-group id="todoStatus" (input)="todoStatus = $event.target.value">
+          <mat-radio-button ngValue=true>Complete</mat-radio-button>
+          <mat-radio-button ngValue=false>Incomplete</mat-radio-button>
+          <mat-radio-button ngValue=null>Both</mat-radio-button>
+        </mat-radio-group>
+
         <!--<mat-form-field>-->
         <!--<input matInput id="userCompany" #input type="text" placeholder="Search for company" (input)="contentChange($event.target.value)">-->
         <!--</mat-form-field>-->

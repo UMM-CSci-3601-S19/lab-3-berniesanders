@@ -5,7 +5,8 @@ import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-todo-list-component',
-  templateUrl: 'todo-list.component.html'
+  templateUrl: 'todo-list.component.html',
+  styleUrls: ['./todo-list.component.css']
 })
 
 export class TodoListComponent implements OnInit {
@@ -23,42 +24,44 @@ export class TodoListComponent implements OnInit {
   }
 
   public filterTodos(
-  searchOwner: string,
-  searchStatus: boolean,
-  searchBody: string,
-  searchCategory: string): Todo[] {
+    searchOwner: string,
+    searchStatus: boolean,
+    searchBody: string,
+    searchCategory: string): Todo[] {
 
-  if (searchOwner != null){
-    searchOwner = searchOwner.toLocaleLowerCase();
+    this.filteredTodos = this.todos;
 
-  this.filteredTodos = this.filteredTodos.filter(todo => {
-    return !searchOwner || todo.owner.toLocaleLowerCase().indexOf(searchOwner) !== -1;
-    });
-  }
+    if (searchOwner != null){
+      searchOwner = searchOwner.toLocaleLowerCase();
 
-  if (searchStatus != null){
-    this.filteredTodos = this.filteredTodos.filter(todo =>{
-      return !searchStatus || (todo.status === Boolean(searchStatus));
-    });
-  }
+    this.filteredTodos = this.filteredTodos.filter(todo => {
+      return !searchOwner || todo.owner.toLocaleLowerCase().indexOf(searchOwner) !== -1;
+      });
+    }
 
-  if (searchBody != null){
-    searchBody = searchBody.toLocaleLowerCase();
+    if (searchStatus != null){
+      this.filteredTodos = this.filteredTodos.filter(todo =>{
+        return !searchStatus || (todo.status === Boolean(searchStatus));
+      });
+    }
 
-  this.filteredTodos = this.filteredTodos.filter(todo => {
-    return !searchBody || todo.body.toLocaleLowerCase().indexOf(searchBody) !== -1;
-    });
-  }
+    if (searchBody != null){
+      searchBody = searchBody.toLocaleLowerCase();
 
- if (searchCategory != null){
-    searchCategory = searchCategory.toLocaleLowerCase();
+    this.filteredTodos = this.filteredTodos.filter(todo => {
+      return !searchBody || todo.body.toLocaleLowerCase().indexOf(searchBody) !== -1;
+      });
+    }
 
-  this.filteredTodos = this.filteredTodos.filter(todo => {
-    return !searchCategory || todo.category.toLocaleLowerCase().indexOf(searchCategory) !== -1;
-    });
- }
+   if (searchCategory != null){
+      searchCategory = searchCategory.toLocaleLowerCase();
 
- return this.filteredTodos;
+    this.filteredTodos = this.filteredTodos.filter(todo => {
+      return !searchCategory || todo.category.toLocaleLowerCase().indexOf(searchCategory) !== -1;
+      });
+   }
+
+   return this.filteredTodos;
 }
 
 
@@ -77,5 +80,4 @@ export class TodoListComponent implements OnInit {
     this.refreshTodos();
   }
 }
-
 
