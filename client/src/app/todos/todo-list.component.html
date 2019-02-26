@@ -27,7 +27,7 @@
         <mat-accordion *ngIf="todos; else todosError">
           <mat-expansion-panel *ngFor="let todo of this.todos">
             <mat-expansion-panel-header>
-              <mat-panel-title matTooltip="complete: {{todo.status}}">{{todo.body}}</mat-panel-title>
+              <mat-panel-title id={{todo._id}} matTooltip="complete: {{todo.status}}">{{todo.body}}</mat-panel-title>
             </mat-expansion-panel-header>
             <mat-panel-description>Id: {{todo._id}}</mat-panel-description>
             <mat-panel-description>Owner: {{todo.owner}}</mat-panel-description>
