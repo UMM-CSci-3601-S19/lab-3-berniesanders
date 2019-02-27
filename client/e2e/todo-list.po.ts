@@ -31,8 +31,12 @@ export class TodoPage {
   }
 
   elementIdExists(id: string){
-    let e = element(by.id(id));
-    return (e != null);
+    return element(by.id(id)).isPresent();
   }
 
+  backspace(n: number){
+    for(let i=0; i<n; i++) {
+      browser.actions().sendKeys(Key.BACK_SPACE).perform();
+    }
+  }
 }

@@ -10,7 +10,7 @@ browser.driver.controlFlow().execute = function () {
   //This delay is only put here so that you can watch the browser do its' thing.
   //If you're tired of it taking long you can remove this call
   origFn.call(browser.driver.controlFlow(), function () {
-    return protractor.promise.delayed(10);
+    return protractor.promise.delayed(100);
   });
 
   return origFn.apply(browser.driver.controlFlow(), args);
@@ -23,18 +23,22 @@ describe('Todo List', () => {
     page = new TodoPage();
   });
 
-  it('should get the Todos Page', () => {
+  it('gets the Todos Page', () => {
     page.navigateTo();
     expect(page.getTitle()).toEqual('Todos');
   });
 
-  it('should filter todos', () => {
+  it('filters todos', () => {
     page.navigateTo();
     page.type("Fry", "todoOwner");
     expect(page.elementIdExists("58895985a22c04e761776d54")).toBe(false);
     expect(page.elementIdExists("58895985c1849992336c219b")).toBe(true);
-    page.type("in", "todoBody");
+    page.type("in.", "todoBody");
     expect(page.elementIdExists("58895985ae3b752b124e7663")).toBe(true);
+    expect(page.elementIdExists("58895985c1849992336c219b")).toBe(false);
+    page.backspace(3);
+    page.type("software", "todoCategory");
+    expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(true);
     expect(page.elementIdExists("58895985c1849992336c219b")).toBe(false);
   });
 });
