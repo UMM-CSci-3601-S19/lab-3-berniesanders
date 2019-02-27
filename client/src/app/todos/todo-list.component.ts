@@ -11,7 +11,6 @@ import {Observable} from "rxjs/Observable";
 
 export class TodoListComponent implements OnInit {
   public todos: Todo[];
-  public name: string = "Hello Worlds";
   public filteredTodos: Todo[];
 
   public todoOwner: string;
