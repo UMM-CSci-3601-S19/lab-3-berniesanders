@@ -39,4 +39,9 @@ export class TodoPage {
       browser.actions().sendKeys(Key.BACK_SPACE).perform();
     }
   }
+
+  clickField(id: string){
+    let e = element(by.id(id));
+    e.click();
+  }
 }

@@ -28,7 +28,7 @@ describe('Todo List', () => {
     expect(page.getTitle()).toEqual('Todos');
   });
 
-  it('filters todos', () => {
+  it('filters todos by text fields', () => {
     page.navigateTo();
     page.type("Fry", "todoOwner");
     expect(page.elementIdExists("58895985a22c04e761776d54")).toBe(false);
@@ -40,5 +40,26 @@ describe('Todo List', () => {
     page.type("software", "todoCategory");
     expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(true);
     expect(page.elementIdExists("58895985c1849992336c219b")).toBe(false);
+
+  });
+  it('filters todos by status', () => {
+    page.navigateTo();
+    page.clickField("statusTrue");
+    expect(page.elementIdExists("58895985842c640e4daabd09")).toBe(true);
+    expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(false);
+    page.clickField("statusFalse");
+    expect(page.elementIdExists("58895985842c640e4daabd09")).toBe(false);
+    expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(true);
+    page.clickField("statusNull");
+    expect(page.elementIdExists("58895985842c640e4daabd09")).toBe(true);
+    expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(true);
+  });
+  it('combines text field and status filters', () =>{
+    page.navigateTo();
+    page.type("Fry", "todoOwner");
+    page.clickField("statusTrue");
+    expect(page.elementIdExists("58895985842c640e4daabd09")).toBe(true);
+    expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(false);
+    expect(page.elementIdExists("58895985186754887e0381f5")).toBe(false);
   });
 });

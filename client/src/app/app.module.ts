@@ -17,12 +17,15 @@ import {UserComponent} from './users/user.component';
 import {TodoListComponent} from './todos/todo-list.component';
 import {TodoListService} from './todos/todo-list.service';
 
+import { MatRadioModule } from '@angular/material/radio';
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     Routing,
     CustomModule,
+    MatRadioModule
   ],
   declarations: [
     AppComponent,

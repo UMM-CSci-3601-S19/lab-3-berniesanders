@@ -42,7 +42,7 @@ describe('Todo List', () => {
           _id: 'id_4',
           owner: 'Sue',
           status: true,
-          body: 'Sue is very busy',
+          body: 'Sue is very busy with stuff',
           category: 'software design'
         }
       ])
@@ -80,8 +80,20 @@ describe('Todo List', () => {
   it('Contains two "Software Design" todos', () => {
     expect(todoList.todos.filter((todo: Todo) => todo.category === 'software design').length).toBe(2);
   });
-  it('Filter todos by owner "Bob" has correct length', () =>{
+  it('Has 1 todo with owner "Bob"', () =>{
     todoList.filteredTodos = todoList.todos;
     expect(todoList.filterTodos("Bob", null, null, null).length).toBe(1);
+  });
+  it('Has two todos with status true', () =>{
+    todoList.filteredTodos = todoList.todos;
+    expect(todoList.filterTodos(null, true, null, null).length).toBe(2);
+  });
+  it('Has three todos with body containing ""', () =>{
+    todoList.filteredTodos = todoList.todos;
+    expect(todoList.filterTodos(null, null, "stuff", null).length).toBe(3);
+  });
+  it('Has three todos with category "Software Design"', () =>{
+    todoList.filteredTodos = todoList.todos;
+    expect(todoList.filterTodos(null, null, null, "Software Design").length).toBe(2);
   });
 });
