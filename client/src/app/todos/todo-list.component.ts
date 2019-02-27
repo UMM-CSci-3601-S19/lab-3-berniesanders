@@ -6,7 +6,6 @@ import {Observable} from "rxjs/Observable";
 @Component({
   selector: 'app-todo-list-component',
   templateUrl: 'todo-list.component.html'
-  //, styleUrls: ['./todo-list.component.css']
 })
 
 export class TodoListComponent implements OnInit {
@@ -58,7 +57,6 @@ export class TodoListComponent implements OnInit {
       return !searchCategory || todo.category.toLocaleLowerCase().indexOf(searchCategory) !== -1;
       });
    }
-
    return this.filteredTodos;
 }
 
@@ -69,9 +67,18 @@ export class TodoListComponent implements OnInit {
     returnedTodos
       .subscribe(allTodos => {
         this.todos = allTodos;
-
+        this.filterTodos(this.todoOwner, this.todoStatus, this.todoBody, this.todoCategory);
       });
     return returnedTodos;
+  }
+
+  idTodos(id: string): Observable<Todo>{
+    const returnedTodo = this.todoListService.getTodosById(id);
+    returnedTodo.subscribe(todo => {
+      this.filteredTodos = [];
+      this.filteredTodos.push(todo);
+    });
+    return returnedTodo;
   }
 
   ngOnInit(): void{
