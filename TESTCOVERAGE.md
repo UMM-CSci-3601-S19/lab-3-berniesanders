@@ -12,6 +12,8 @@
 
 1. combines text field and status filters - Tests filtering with both text fields and status buttons.
 
+1. filters todos by id - Tests retrieving a single todo by id.
+
 #User List
 1. should get and highlight User Name attribute - Ensures the page loads properly
 

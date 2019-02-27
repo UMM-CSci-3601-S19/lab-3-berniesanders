@@ -62,4 +62,10 @@ describe('Todo List', () => {
     expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(false);
     expect(page.elementIdExists("58895985186754887e0381f5")).toBe(false);
   });
+  it('filters todos by id', () => {
+    page.navigateTo();
+    page.type("58895985842c640e4daabd09", "todo_id");
+    expect(page.elementIdExists("58895985842c640e4daabd09")).toBe(true);
+    expect(page.elementIdExists("58895985cc9e12baff820394")).toBe(false);
+  })
 });
