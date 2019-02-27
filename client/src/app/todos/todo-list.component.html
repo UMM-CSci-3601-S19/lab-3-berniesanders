@@ -14,18 +14,15 @@
           <input matInput id="todoCategory" #input placeholder="Filter by Category" (input)="todoCategory = $event.target.value">
         </mat-form-field>
 
-        <mat-radio-group id="todoStatus" (input)="todoStatus = $event.target.value">
-          <mat-radio-button >Complete</mat-radio-button>
-          <mat-radio-button >Incomplete</mat-radio-button>
-          <mat-radio-button >Both</mat-radio-button>
+        <label>Status:</label>
+        <mat-radio-group name="todoStatus" id="todoStatus" (change)="todoStatus = parseString($event.value)">
+          <mat-radio-button value="true" name="todoStatus">Complete</mat-radio-button>
+          <mat-radio-button value="false" name="todoStatus">Incomplete</mat-radio-button>
+          <mat-radio-button value="null" name="todoStatus">Both</mat-radio-button>
         </mat-radio-group>
 
-        <!--<mat-form-field>-->
-        <!--<input matInput id="userCompany" #input type="text" placeholder="Search for company" (input)="contentChange($event.target.value)">-->
-        <!--</mat-form-field>-->
-
         <mat-accordion *ngIf="todos; else todosError">
-          <mat-expansion-panel  *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
+          <mat-expansion-panel *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
             <mat-expansion-panel-header>
               <mat-panel-title id={{todo._id}} matTooltip="complete: {{todo.status}}">{{todo.body}}</mat-panel-title>
             </mat-expansion-panel-header>

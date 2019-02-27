@@ -5,8 +5,8 @@ import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-todo-list-component',
-  templateUrl: 'todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  templateUrl: 'todo-list.component.html'
+  //, styleUrls: ['./todo-list.component.css']
 })
 
 export class TodoListComponent implements OnInit {
@@ -38,10 +38,9 @@ export class TodoListComponent implements OnInit {
       return !searchOwner || todo.owner.toLocaleLowerCase().indexOf(searchOwner) !== -1;
       });
     }
-
     if (searchStatus != null){
       this.filteredTodos = this.filteredTodos.filter(todo =>{
-        return !searchStatus || (todo.status === Boolean(searchStatus));
+        return (todo.status === Boolean(searchStatus));
       });
     }
 
@@ -78,6 +77,16 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void{
     this.refreshTodos();
+  }
+
+  parseString(str: string): boolean{
+    if(str == "true"){
+      return true;
+    }else if(str == "false"){
+      return false;
+    }else{
+      return null;
+    }
   }
 }
 
